@@ -18,6 +18,10 @@ services:
       - "8080:8080"
     volumes:
       - ./backend:/app/backend
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/easygenerator
     command: sh -c "yarn install && yarn start:dev"
 
   ui:
