@@ -38,9 +38,7 @@ export class UsersService {
       const saved = await createdUser.save();
       this.logger.log(`user created successfully`);
 
-      // Generate jwt for new user
-      const jwt = await this.authService.login(saved);
-      return jwt;
+      return { name: saved.name, email: saved.email, _id: saved._id };
     } catch (err) {
       this.logger.error(`failed signing up user: ${err.message}`);
       throw new InternalServerErrorException(err.message);
